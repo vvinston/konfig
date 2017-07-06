@@ -1,0 +1,5 @@
+- PropertyFileConfiguration
+- XmlFileConfiguration
+- JsonFileConfiguration
+- YamlFileConfiguration
+- JmxConfiguration
