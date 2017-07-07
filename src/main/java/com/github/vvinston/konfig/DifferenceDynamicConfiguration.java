@@ -4,17 +4,17 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public final class DifferenceOverwritableConfiguration implements OverwritableConfiguration {
+public final class DifferenceDynamicConfiguration implements Configuration, DynamicConfiguration {
 
     private final Configuration configuration;
     private final Map<String, String> overwritten = new HashMap<>();
 
-    public DifferenceOverwritableConfiguration(final Configuration configuration) {
+    public DifferenceDynamicConfiguration(final Configuration configuration) {
         this.configuration = configuration;
     }
 
     @Override
-    public void overwrite(final String id, final String value) {
+    public void change(final String id, final String value) {
         overwritten.put(id, value);
     }
 

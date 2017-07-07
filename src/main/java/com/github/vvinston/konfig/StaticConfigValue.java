@@ -1,5 +1,6 @@
 package com.github.vvinston.konfig;
 
+import java.util.Objects;
 import java.util.function.Function;
 
 final class StaticConfigValue implements ConfigValue {
@@ -28,5 +29,18 @@ final class StaticConfigValue implements ConfigValue {
     @Override
     public <T> T as(Function<String, T> mapper) {
         return mapper.apply(value);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StaticConfigValue that = (StaticConfigValue) o;
+        return Objects.equals(value, that.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
     }
 }

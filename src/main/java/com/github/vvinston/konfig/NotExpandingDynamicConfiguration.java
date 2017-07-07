@@ -3,19 +3,21 @@ package com.github.vvinston.konfig;
 import java.util.Map;
 import java.util.Optional;
 
-public class NotExpandingOverwritableConfiguration implements OverwritableConfiguration {
+public class NotExpandingDynamicConfiguration<T extends Configuration & DynamicConfiguration> implements Configuration, DynamicConfiguration {
 
-    private final OverwritableConfiguration configuration;
+    private final T configuration;
 
-    public NotExpandingOverwritableConfiguration(final OverwritableConfiguration configuration) {
+    public NotExpandingDynamicConfiguration(final T configuration) {
         this.configuration = configuration;
     }
 
     @Override
-    public void overwrite(final String id, final String value) {
+    public void change(final String id, final String value) {
         if (!configuration.read(id).isPresent()) {
             throw new IllegalArgumentException("Not an existing config: " + id);
         }
+
+        configuration.change(id, value);
     }
 
     @Override
