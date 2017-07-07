@@ -3,3 +3,4 @@
 - JsonFileConfiguration
 - YamlFileConfiguration
 - JmxConfiguration
+- Circular referencing in SmartConfiguration

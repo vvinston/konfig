@@ -3,5 +3,5 @@ package com.github.vvinston.konfig;
 import java.util.Optional;
 
 public interface OverwritableConfiguration extends Configuration {
-    void change(String id, String value);
+    void overwrite(String id, String value);
 }

@@ -14,7 +14,7 @@ public final class DifferenceOverwritableConfiguration implements OverwritableCo
     }
 
     @Override
-    public void change(final String id, final String value) {
+    public void overwrite(final String id, final String value) {
         overwritten.put(id, value);
     }
 
@@ -34,5 +34,9 @@ public final class DifferenceOverwritableConfiguration implements OverwritableCo
             }
         }
         return result;
+    }
+
+    public void reset() {
+        overwritten.clear();
     }
 }
