@@ -1,6 +1,5 @@
 package com.github.vvinston.konfig;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
@@ -28,10 +27,12 @@ public class AdaptedConfiguration implements Configuration {
     @Override
     // There might be a more elegant solution for this
     public Map<String, ConfigValue> find(String prefix) {
-        final Map<String, ConfigValue> result = new HashMap<>();
-        for (final Map.Entry<String, String> record : findAdapter.apply(prefix).entrySet()) {
-            result.put(record.getKey(), new StaticConfigValue(record.getValue()));
-        }
-        return result;
+        return new AdaptedMap<>(findAdapter.apply(prefix), s -> new StaticConfigValue(s), c -> c.asString());
+
+//        final Map<String, ConfigValue> result = new HashMap<>();
+//        for (final Map.Entry<String, String> record : findAdapter.apply(prefix).entrySet()) {
+//            result.put(record.getKey(), new StaticConfigValue(record.getValue()));
+//        }
+//        return result;
     }
 }
